@@ -1,0 +1,75 @@
+﻿<Window x:Class="WPFBevezetes.Views.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFBevezetes.ViewModels"
+        mc:Ignorable="d"
+        Title="Regisztráció" 
+        Height="600" 
+        Width="400"
+        FontSize="16"
+        DataContext="{StaticResource registrationViewModel}">
+
+    <Grid
+        Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Label
+            FontSize="32"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            Regisztráció
+        </Label>
+
+        <StackPanel
+            VerticalAlignment="Center"
+            Grid.Row="1">
+
+            <Label>
+                Felhasználónév:
+            </Label>
+
+            <TextBox 
+                x:Name="tbUsername"
+                Text="{Binding Path=Username, Mode=TwoWay}"
+                Margin="5 0 5 20"/>
+
+            <Label>
+                E-Mail cím::
+            </Label>
+
+            <TextBox 
+                x:Name="tbEmail"
+                Margin="5 0 5 20"/>
+
+            <Label>
+                Jelszó:
+            </Label>
+
+            <PasswordBox 
+                x:Name="pbPassword"
+                Margin="5 0 5 20"/>
+
+            <Label>
+                Jelszó megerősítése:
+            </Label>
+
+            <PasswordBox 
+                x:Name="pbConfirmPassword"
+                Margin="5 0 5 0"/>
+
+        </StackPanel>
+
+        <Button
+            x:Name="btnSignup"
+            Grid.Row="2" Click="btnSignup_Click">
+            Regisztráció
+        </Button>
+    </Grid>
+</Window>
