@@ -6,5 +6,34 @@
     
     <Application.Resources>
         <vm:RegistrationViewModel x:Key="registrationViewModel"/>
+
+        <Style
+            TargetType="{x:Type Control}"
+            x:Key="validationErrorStyle">
+
+            <Style.Setters>
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <Border
+                                    BorderBrush="OrangeRed"
+                                    BorderThickness="1"
+                                    HorizontalAlignment="Left">
+                                    <AdornedElementPlaceholder x:Name="controlWithError"/>
+                                </Border>
+                                <TextBlock
+                                    Foreground="OrangeRed"
+                                    FontSize="12"
+                                    FontWeight="SemiBold"
+                                    Text="{ Binding ErrorContent }"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+            </Style.Setters>
+            
+        </Style>
     </Application.Resources>
 </Application>
