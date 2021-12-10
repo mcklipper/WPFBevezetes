@@ -23,15 +23,17 @@ namespace WPFBevezetes.Views
             pbPassword.SetBinding(Password, new Binding(Password.Name)
             {
                 Source = Model,
-                Mode = BindingMode.OneWayToSource,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                Mode = BindingMode.OneWay,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                ValidatesOnDataErrors = true
             });
 
             pbConfirmPassword.SetBinding(ConfirmPassword, new Binding(ConfirmPassword.Name)
             {
                 Source = Model,
-                Mode = BindingMode.OneWayToSource,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                Mode = BindingMode.OneWay,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                ValidatesOnDataErrors = true
             });
 
         }

@@ -65,6 +65,7 @@
             <PasswordBox 
                 x:Name="pbPassword"
                 Margin="5 0 5 20"
+                Style="{ StaticResource validationErrorStyle }"
                 PasswordChanged="PbPassword_PasswordChanged"/>
 
             <Label>
@@ -74,6 +75,7 @@
             <PasswordBox 
                 x:Name="pbConfirmPassword"
                 Margin="5 0 5 0"
+                Style="{ StaticResource validationErrorStyle }"
                 PasswordChanged="PbConfirmPassword_PasswordChanged"/>
 
         </StackPanel>

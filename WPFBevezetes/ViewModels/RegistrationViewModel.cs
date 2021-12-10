@@ -4,6 +4,7 @@ using System.Security;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Linq;
+using WPFBevezetes.Validators;
 
 namespace WPFBevezetes.ViewModels
 {
@@ -28,6 +29,10 @@ namespace WPFBevezetes.ViewModels
         }
 
         SecureString _password;
+        [Required]
+        [PasswordLength(8, ErrorMessage = "Password should be at least 8 characters!")]
+        [PasswordContainsUppercase(ErrorMessage = "Password should contain upper case letter!")]
+        [PasswordContainsNumber(ErrorMessage = "Password should contain number!")]
         public SecureString Password 
         {
             get { return _password; }
@@ -35,6 +40,8 @@ namespace WPFBevezetes.ViewModels
         }
 
         SecureString _confirmPassword;
+        [Required]
+        [ConfirmPassword(nameof(Password))]
         public SecureString ConfirmPassword 
         { 
             get { return _confirmPassword; }
@@ -61,6 +68,6 @@ namespace WPFBevezetes.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName]string callerName = null) =>
-            PropertyChanged?.Invoke(this, null);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerName));
     }
 }
