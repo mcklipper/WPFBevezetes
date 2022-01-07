@@ -16,6 +16,8 @@ namespace WPFBevezetes.Views
         public RegistrationViewModel Model => 
             DataContext as RegistrationViewModel;
 
+        public ApplicationDbContext Context { get; set; }
+
         public RegistrationWindow()
         {
             InitializeComponent();
@@ -36,14 +38,19 @@ namespace WPFBevezetes.Views
                 ValidatesOnDataErrors = true
             });
 
+            Context = new();
         }
 
         private void BtnSignup_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"{Model.Username}\n" +
-            $"{Model.Email}\n" +
-            $"{Model.Password.Length}\n" +
-            $"{Model.ConfirmPassword.Length}");
+            Context.Users.Add(new()
+            {
+                UserName = Model.Username,
+                Email = Model.Email,
+                PasswordHash = pbPassword.Password
+            });
+
+            Context.SaveChanges();
         }
 
         private void PbPassword_PasswordChanged(object sender, RoutedEventArgs e)

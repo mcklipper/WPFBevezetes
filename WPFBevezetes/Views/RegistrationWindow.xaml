@@ -2,13 +2,14 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Regisztráció" 
         Height="600" 
         Width="400"
         FontSize="16"
-        DataContext="{StaticResource registrationViewModel}">
+        DataContext="{ StaticResource registrationViewModel }">
 
     <Grid
         Margin="10">
@@ -36,13 +37,23 @@
 
             <TextBox 
                 x:Name="tbUsername"
-                Style="{ StaticResource validationErrorStyle }"
+                Style="{ StaticResource untouchedControl }"
                 Text="{ Binding 
                     Path = Username,
                     UpdateSourceTrigger = PropertyChanged,
                     ValidatesOnDataErrors = True,
                     Mode = OneWayToSource }"
-                Margin="5 0 5 20"/>
+                Margin="5 0 5 20">
+                
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="LostFocus">
+                        <i:ChangePropertyAction
+                            PropertyName="Style"
+                            Value="{ StaticResource validationErrorStyle }"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                
+            </TextBox>
 
             <Label>
                 E-Mail cím:
@@ -51,12 +62,22 @@
             <TextBox 
                 x:Name="tbEmail"
                 Margin="5 0 5 20"
-                Style="{ StaticResource validationErrorStyle }"
+                Style="{ StaticResource untouchedControl }"
                 Text="{ Binding 
                     Path = Email,
                     UpdateSourceTrigger = PropertyChanged,
                     ValidatesOnDataErrors = True,
-                    Mode = OneWayToSource }"/>
+                    Mode = OneWayToSource }">
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="LostFocus">
+                        <i:ChangePropertyAction
+                            PropertyName="Style"
+                            Value="{ StaticResource validationErrorStyle }"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </TextBox>
 
             <Label>
                 Jelszó:
@@ -65,8 +86,18 @@
             <PasswordBox 
                 x:Name="pbPassword"
                 Margin="5 0 5 20"
-                Style="{ StaticResource validationErrorStyle }"
-                PasswordChanged="PbPassword_PasswordChanged"/>
+                Style="{ StaticResource untouchedControl }"
+                PasswordChanged="PbPassword_PasswordChanged">
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="LostFocus">
+                        <i:ChangePropertyAction
+                            PropertyName="Style"
+                            Value="{ StaticResource validationErrorStyle }"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </PasswordBox>
 
             <Label>
                 Jelszó megerősítése:
@@ -75,8 +106,18 @@
             <PasswordBox 
                 x:Name="pbConfirmPassword"
                 Margin="5 0 5 0"
-                Style="{ StaticResource validationErrorStyle }"
-                PasswordChanged="PbConfirmPassword_PasswordChanged"/>
+                Style="{ StaticResource untouchedControl }"
+                PasswordChanged="PbConfirmPassword_PasswordChanged">
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="LostFocus">
+                        <i:ChangePropertyAction
+                            PropertyName="Style"
+                            Value="{ StaticResource validationErrorStyle }"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </PasswordBox>
 
         </StackPanel>
 
